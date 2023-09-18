@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# ./allfeatures <configs dir>
+
+cat $(find $1 -maxdepth 1 -mindepth 1)	\
+    | grep -v '#'			\
+    | awk NF				\
+    | cut -d= -f1			\
+    | sed 's/^CONFIG_//'		\
+    | sort				\
+    | uniq				\
+    | sort
